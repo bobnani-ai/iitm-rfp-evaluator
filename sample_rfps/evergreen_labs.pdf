@@ -1,0 +1,190 @@
+%PDF-1.4
+%Synthetic RFP
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 3 /Kids [5 0 R 7 0 R 9 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 1440 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(Evergreen Labs) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-10-04    Page 1 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(1. EXECUTIVE SUMMARY AND REQUIREMENT UNDERSTANDING) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(Evergreen presents a strong prototype and privacy design, but staffing and total cost are) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(uncertain.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(COMMON PROCUREMENT REQUEST) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Northstar Borough Council seeks a cloud-hosted case intake and service portal for citizens and) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(staff. Required scope: migrate 120,000 records; integrate SSO, CRM and payments; support 2,000) Tj
+/F1 10 Tf
+1 0 0 1 52 543 Tm
+(concurrent users; go live within 24 weeks; provide accessible interfaces, audit logs, privacy) Tj
+/F1 10 Tf
+1 0 0 1 52 527 Tm
+(controls and 12 months of support.) Tj
+/F1 12 Tf
+1 0 0 1 52 499 Tm
+(2. PROPOSED SOLUTION AND TECHNICAL APPROACH) Tj
+/F1 10 Tf
+1 0 0 1 52 479 Tm
+(Prototype demonstrates accessible intake flows, OIDC SSO, CRM event bus and hosted payment) Tj
+/F1 10 Tf
+1 0 0 1 52 463 Tm
+(page. Autoscaling estimate is 2,400 users. Migration mapping exists, but no reconciliation) Tj
+/F1 10 Tf
+1 0 0 1 52 447 Tm
+(threshold is defined.) Tj
+/F1 9 Tf
+1 0 0 1 52 431 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 1275 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(Evergreen Labs) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-10-04    Page 2 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(3. IMPLEMENTATION TIMELINE, TEAM AND MILESTONES) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(Discovery and prototype by week 6; integrations by week 16; deployment targeted by week 22.) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(Named architect and two engineers; QA allocation and milestone acceptance criteria are not) Tj
+/F1 10 Tf
+1 0 0 1 52 607 Tm
+(stated.) Tj
+/F1 12 Tf
+1 0 0 1 52 579 Tm
+(4. PRICE TABLE AND ASSUMPTIONS \(USD\)) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(Platform build | 320000 | Estimate) Tj
+/F1 10 Tf
+1 0 0 1 52 543 Tm
+(Migration | 90000 | Estimate) Tj
+/F1 10 Tf
+1 0 0 1 52 527 Tm
+(Year-one support | TBD | Negotiation) Tj
+/F1 10 Tf
+1 0 0 1 52 511 Tm
+(TOTAL | TBD | USD; total not firm) Tj
+/F1 12 Tf
+1 0 0 1 52 483 Tm
+(COMMERCIAL CLARIFICATION) Tj
+/F1 10 Tf
+1 0 0 1 52 463 Tm
+(All prices are fictional classroom values. Taxes are excluded. Only explicit inclusions in) Tj
+/F1 10 Tf
+1 0 0 1 52 447 Tm
+(this proposal should be considered committed scope.) Tj
+/F1 9 Tf
+1 0 0 1 52 431 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 1038 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(Evergreen Labs) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-10-04    Page 3 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(5. SECURITY, COMPLIANCE AND PRIVACY CONTROLS) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(Privacy impact assessment template, encrypted storage, OIDC roles, audit export and annual) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(external penetration test. ISO 27001 certification is planned, not yet achieved.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(6. SUPPORT MODEL, EXPERIENCE AND REFERENCES) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Weekday ticket desk; service level and priority response times not stated. One education) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(portal reference is listed.) Tj
+/F1 12 Tf
+1 0 0 1 52 531 Tm
+(7. DELIVERY RISKS AND GAPS) Tj
+/F1 10 Tf
+1 0 0 1 52 511 Tm
+(Support cost not quoted; certification is planned rather than current.) Tj
+/F1 9 Tf
+1 0 0 1 52 495 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000024 00000 n 
+0000000073 00000 n 
+0000000142 00000 n 
+0000000212 00000 n 
+0000001704 00000 n 
+0000001830 00000 n 
+0000003157 00000 n 
+0000003283 00000 n 
+0000004373 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+4499
+%%EOF

@@ -1,0 +1,187 @@
+%PDF-1.4
+%Synthetic RFP
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 3 /Kids [5 0 R 7 0 R 9 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 1455 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(Delta Civic) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-09-28    Page 1 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(1. EXECUTIVE SUMMARY AND REQUIREMENT UNDERSTANDING) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(Delta Civic offers a practical civic workflow design and competitive pricing with a 19-week) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(plan.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(COMMON PROCUREMENT REQUEST) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Northstar Borough Council seeks a cloud-hosted case intake and service portal for citizens and) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(staff. Required scope: migrate 120,000 records; integrate SSO, CRM and payments; support 2,000) Tj
+/F1 10 Tf
+1 0 0 1 52 543 Tm
+(concurrent users; go live within 24 weeks; provide accessible interfaces, audit logs, privacy) Tj
+/F1 10 Tf
+1 0 0 1 52 527 Tm
+(controls and 12 months of support.) Tj
+/F1 12 Tf
+1 0 0 1 52 499 Tm
+(2. PROPOSED SOLUTION AND TECHNICAL APPROACH) Tj
+/F1 10 Tf
+1 0 0 1 52 479 Tm
+(Configurable portal, OIDC SSO and REST CRM mappings are described. Payments use hosted) Tj
+/F1 10 Tf
+1 0 0 1 52 463 Tm
+(checkout. The plan targets 2,000 concurrent users but does not include a full load-test) Tj
+/F1 10 Tf
+1 0 0 1 52 447 Tm
+(report. Migration includes sample reconciliation.) Tj
+/F1 9 Tf
+1 0 0 1 52 431 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 1231 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(Delta Civic) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-09-28    Page 2 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(3. IMPLEMENTATION TIMELINE, TEAM AND MILESTONES) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(Weeks 1-3 discovery; 4-10 build; 11-15 integration and migration; 16-18 testing; 19 launch.) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(Team: delivery lead, three engineers, QA analyst. Risk log reviewed weekly.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(4. PRICE TABLE AND ASSUMPTIONS \(USD\)) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Platform build | 300000 | Fixed scope) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(Migration | 60000 | Up to 120000 records) Tj
+/F1 10 Tf
+1 0 0 1 52 543 Tm
+(Year-one support | 55000 | Weekdays) Tj
+/F1 10 Tf
+1 0 0 1 52 527 Tm
+(TOTAL | 415000 | USD excluding tax) Tj
+/F1 12 Tf
+1 0 0 1 52 499 Tm
+(COMMERCIAL CLARIFICATION) Tj
+/F1 10 Tf
+1 0 0 1 52 479 Tm
+(All prices are fictional classroom values. Taxes are excluded. Only explicit inclusions in) Tj
+/F1 10 Tf
+1 0 0 1 52 463 Tm
+(this proposal should be considered committed scope.) Tj
+/F1 9 Tf
+1 0 0 1 52 447 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 1047 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(Delta Civic) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-09-28    Page 3 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(5. SECURITY, COMPLIANCE AND PRIVACY CONTROLS) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(Role-based access, TLS, encrypted backups, audit log and annual vulnerability scan are) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(included. Certification and incident notification window are not stated.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(6. SUPPORT MODEL, EXPERIENCE AND REFERENCES) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Weekday phone and email, 2-hour urgent acknowledgement. Two regional government case systems) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(with reference names provided.) Tj
+/F1 12 Tf
+1 0 0 1 52 531 Tm
+(7. DELIVERY RISKS AND GAPS) Tj
+/F1 10 Tf
+1 0 0 1 52 511 Tm
+(Certification evidence absent; capacity evidence is a target rather than a test result.) Tj
+/F1 9 Tf
+1 0 0 1 52 495 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000024 00000 n 
+0000000073 00000 n 
+0000000142 00000 n 
+0000000212 00000 n 
+0000001719 00000 n 
+0000001845 00000 n 
+0000003128 00000 n 
+0000003254 00000 n 
+0000004353 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+4479
+%%EOF

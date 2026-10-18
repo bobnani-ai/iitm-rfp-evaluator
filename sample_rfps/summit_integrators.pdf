@@ -1,0 +1,184 @@
+%PDF-1.4
+%Synthetic RFP
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 3 /Kids [5 0 R 7 0 R 9 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 1394 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(Summit Integrators) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-09-26    Page 1 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(1. EXECUTIVE SUMMARY AND REQUIREMENT UNDERSTANDING) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(Summit delivers a credible integration and support offer, with moderate cost and a 21-week) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(schedule.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(COMMON PROCUREMENT REQUEST) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Northstar Borough Council seeks a cloud-hosted case intake and service portal for citizens and) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(staff. Required scope: migrate 120,000 records; integrate SSO, CRM and payments; support 2,000) Tj
+/F1 10 Tf
+1 0 0 1 52 543 Tm
+(concurrent users; go live within 24 weeks; provide accessible interfaces, audit logs, privacy) Tj
+/F1 10 Tf
+1 0 0 1 52 527 Tm
+(controls and 12 months of support.) Tj
+/F1 12 Tf
+1 0 0 1 52 499 Tm
+(2. PROPOSED SOLUTION AND TECHNICAL APPROACH) Tj
+/F1 10 Tf
+1 0 0 1 52 479 Tm
+(API-first portal with OIDC, bidirectional CRM REST integration and hosted payments. Load-test) Tj
+/F1 10 Tf
+1 0 0 1 52 463 Tm
+(plan covers 2,500 users. Migration includes two trial loads and record-count reconciliation.) Tj
+/F1 9 Tf
+1 0 0 1 52 447 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 1257 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(Summit Integrators) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-09-26    Page 2 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(3. IMPLEMENTATION TIMELINE, TEAM AND MILESTONES) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(Weeks 1-3 discovery; 4-12 build; 13-16 integration; 17-19 acceptance; 20-21 deployment. Team:) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(delivery manager, architect, three engineers and test lead. Risk register has weekly owners.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(4. PRICE TABLE AND ASSUMPTIONS \(USD\)) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Platform build | 335000 | Fixed scope) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(Migration | 65000 | 120000 records) Tj
+/F1 10 Tf
+1 0 0 1 52 543 Tm
+(Year-one support | 65000 | Extended hours) Tj
+/F1 10 Tf
+1 0 0 1 52 527 Tm
+(TOTAL | 465000 | USD excluding tax) Tj
+/F1 12 Tf
+1 0 0 1 52 499 Tm
+(COMMERCIAL CLARIFICATION) Tj
+/F1 10 Tf
+1 0 0 1 52 479 Tm
+(All prices are fictional classroom values. Taxes are excluded. Only explicit inclusions in) Tj
+/F1 10 Tf
+1 0 0 1 52 463 Tm
+(this proposal should be considered committed scope.) Tj
+/F1 9 Tf
+1 0 0 1 52 447 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 1046 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(Summit Integrators) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-09-26    Page 3 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(5. SECURITY, COMPLIANCE AND PRIVACY CONTROLS) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(ISO 27001 certified hosting, encrypted backups, role-based access, audit export and 72-hour) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(incident notification. No external penetration test date supplied.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(6. SUPPORT MODEL, EXPERIENCE AND REFERENCES) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Extended-hours desk, 2-hour priority acknowledgement. Three comparable public-service projects) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(and two named references.) Tj
+/F1 12 Tf
+1 0 0 1 52 531 Tm
+(7. DELIVERY RISKS AND GAPS) Tj
+/F1 10 Tf
+1 0 0 1 52 511 Tm
+(Penetration test date missing; migration exceptions handled through change control.) Tj
+/F1 9 Tf
+1 0 0 1 52 495 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000024 00000 n 
+0000000073 00000 n 
+0000000142 00000 n 
+0000000212 00000 n 
+0000001658 00000 n 
+0000001784 00000 n 
+0000003093 00000 n 
+0000003219 00000 n 
+0000004317 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+4443
+%%EOF

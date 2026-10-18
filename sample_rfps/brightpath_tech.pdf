@@ -1,0 +1,187 @@
+%PDF-1.4
+%Synthetic RFP
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 3 /Kids [5 0 R 7 0 R 9 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 1461 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(BrightPath Tech) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-09-29    Page 1 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(1. EXECUTIVE SUMMARY AND REQUIREMENT UNDERSTANDING) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(BrightPath offers the lowest price and an 18-week go-live, with a lean team and limited) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(compliance documentation.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(COMMON PROCUREMENT REQUEST) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Northstar Borough Council seeks a cloud-hosted case intake and service portal for citizens and) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(staff. Required scope: migrate 120,000 records; integrate SSO, CRM and payments; support 2,000) Tj
+/F1 10 Tf
+1 0 0 1 52 543 Tm
+(concurrent users; go live within 24 weeks; provide accessible interfaces, audit logs, privacy) Tj
+/F1 10 Tf
+1 0 0 1 52 527 Tm
+(controls and 12 months of support.) Tj
+/F1 12 Tf
+1 0 0 1 52 499 Tm
+(2. PROPOSED SOLUTION AND TECHNICAL APPROACH) Tj
+/F1 10 Tf
+1 0 0 1 52 479 Tm
+(Managed web app with a single-region database and SSO connector. CRM and payments will use) Tj
+/F1 10 Tf
+1 0 0 1 52 463 Tm
+(vendor APIs. Capacity claim is 2,000 concurrent users, but no load-test method or migration) Tj
+/F1 10 Tf
+1 0 0 1 52 447 Tm
+(reconciliation is supplied.) Tj
+/F1 9 Tf
+1 0 0 1 52 431 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 1250 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(BrightPath Tech) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-09-29    Page 2 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(3. IMPLEMENTATION TIMELINE, TEAM AND MILESTONES) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(Weeks 1-2 discovery; 3-10 build; 11-14 integrations; 15-17 testing; week 18 launch. Team: lead) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(engineer, two developers and part-time QA. A formal risk register is not provided.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(4. PRICE TABLE AND ASSUMPTIONS \(USD\)) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Platform build | 235000 | Fixed scope) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(Migration | 45000 | Data cleansing excluded) Tj
+/F1 10 Tf
+1 0 0 1 52 543 Tm
+(Year-one support | 40000 | Email only) Tj
+/F1 10 Tf
+1 0 0 1 52 527 Tm
+(TOTAL | 320000 | USD excluding tax) Tj
+/F1 12 Tf
+1 0 0 1 52 499 Tm
+(COMMERCIAL CLARIFICATION) Tj
+/F1 10 Tf
+1 0 0 1 52 479 Tm
+(All prices are fictional classroom values. Taxes are excluded. Only explicit inclusions in) Tj
+/F1 10 Tf
+1 0 0 1 52 463 Tm
+(this proposal should be considered committed scope.) Tj
+/F1 9 Tf
+1 0 0 1 52 447 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 1063 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 52 750 Tm
+(NORTHSTAR BOROUGH COUNCIL | RFP RESPONSE) Tj
+/F1 20 Tf
+1 0 0 1 52 728 Tm
+(BrightPath Tech) Tj
+/F1 10 Tf
+1 0 0 1 52 696 Tm
+(Submission: 2026-09-29    Page 3 of 3) Tj
+/F1 12 Tf
+1 0 0 1 52 659 Tm
+(5. SECURITY, COMPLIANCE AND PRIVACY CONTROLS) Tj
+/F1 10 Tf
+1 0 0 1 52 639 Tm
+(HTTPS and password controls are named. Certification, privacy impact assessment, retention) Tj
+/F1 10 Tf
+1 0 0 1 52 623 Tm
+(policy, penetration testing and incident response times are not stated.) Tj
+/F1 12 Tf
+1 0 0 1 52 595 Tm
+(6. SUPPORT MODEL, EXPERIENCE AND REFERENCES) Tj
+/F1 10 Tf
+1 0 0 1 52 575 Tm
+(Email support on weekdays; response target not stated. One small nonprofit portal is mentioned) Tj
+/F1 10 Tf
+1 0 0 1 52 559 Tm
+(without a verifiable reference.) Tj
+/F1 12 Tf
+1 0 0 1 52 531 Tm
+(7. DELIVERY RISKS AND GAPS) Tj
+/F1 10 Tf
+1 0 0 1 52 511 Tm
+(Compliance evidence is incomplete; migration cleansing and incident response are unspecified.) Tj
+/F1 9 Tf
+1 0 0 1 52 495 Tm
+(Synthetic classroom proposal. No confidential supplier information.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000024 00000 n 
+0000000073 00000 n 
+0000000142 00000 n 
+0000000212 00000 n 
+0000001725 00000 n 
+0000001851 00000 n 
+0000003153 00000 n 
+0000003279 00000 n 
+0000004394 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+4520
+%%EOF
