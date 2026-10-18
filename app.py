@@ -32,6 +32,11 @@ def api_key(provider: str, entered: str) -> str:
         return ""
 
 
+def show_error(message: str) -> None:
+    st.toast(message, icon=":material/error:", duration="long")
+    st.error(message)
+
+
 def show_run(run: dict, key: str) -> None:
     st.subheader("Leaderboard")
     st.caption(f"Run {run['rfp_run_id']} · {run['status']} · {run['mode']} mode · "
@@ -107,12 +112,12 @@ with criteria_tab:
                 ])
             st.success("Criteria saved to SQLite.")
         except Exception as exc:
-            st.error(f"Could not save criteria: {exc}")
+            show_error(f"Could not save criteria: {exc}")
     try:
         current = active_criteria()
         st.write(f"Active weight total: **{sum(row['weight'] for row in current):g}%**")
     except ValueError as exc:
-        st.error(str(exc))
+        show_error(str(exc))
 
 with evaluate_tab:
     mode = st.radio("Evaluation mode", ["Demo: bundled proposals", "Live: uploaded PDFs + selected LLM"],
@@ -144,8 +149,10 @@ with evaluate_tab:
                                "experience_rating": experience, "filename": uploaded.name,
                                "pdf_bytes": uploaded.getvalue()})
     if st.button("Evaluate batch", type="primary",
-                 disabled=len(inputs) < 2 or (not mode.startswith("Demo") and (not selected_api_key or not model))):
+                 disabled=len(inputs) < 2):
         try:
+            if not mode.startswith("Demo") and not model:
+                raise ValueError("Enter a model ID in the sidebar.")
             with st.spinner("Reading proposals and evaluating suppliers..."):
                 run = create_run(inputs, "demo" if mode.startswith("Demo") else "live",
                                  api_key=selected_api_key if not mode.startswith("Demo") else "",
@@ -153,7 +160,8 @@ with evaluate_tab:
             st.session_state["current_run_id"] = run["rfp_run_id"]
             st.success("Run completed and saved to SQLite.")
         except Exception as exc:
-            st.error(f"Evaluation stopped: {exc}")
+            detail = str(exc).replace(selected_api_key, "[redacted]") if selected_api_key else str(exc)
+            show_error(f"Evaluation stopped: {detail}")
     if st.session_state.get("current_run_id"):
         try:
             show_run(load_run(st.session_state["current_run_id"]), "current")

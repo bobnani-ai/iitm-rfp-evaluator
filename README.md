@@ -16,16 +16,18 @@ streamlit run app.py
 
 On macOS/Linux, activate with `source .venv/bin/activate`. Open the Streamlit URL, choose **Demo: bundled proposals**, leave the default four selected, then click **Evaluate batch**. Open **Saved runs** to retrieve the result. Download JSON from the result panel.
 
-For live evaluation, choose a provider and model in the **left sidebar**, then paste that provider's API key into the password field. Supported providers are OpenAI, Anthropic Claude, and Google Gemini. The sidebar includes two model choices per provider and a custom model ID option. The pasted key is used for that session's API calls; it is never stored in SQLite or exported JSON. You may instead configure a provider-specific environment variable or an uncommitted `.streamlit/secrets.toml`:
+For live evaluation, choose a provider and model in the **left sidebar**, then paste that provider's API key into the password field. Supported providers are OpenAI, Anthropic Claude, Google Gemini, Cohere.ai, and OpenRouter. The sidebar includes two model choices per provider and a custom model ID option (OpenRouter IDs use a `provider/model` format). The pasted key is used for that session's API calls; it is never stored in SQLite or exported JSON. You may instead configure a provider-specific environment variable or an uncommitted `.streamlit/secrets.toml`:
 
 ```toml
 OPENAI_API_KEY = "your-key"
 # Optional alternatives:
 # ANTHROPIC_API_KEY = "your-key"
 # GEMINI_API_KEY = "your-key"
+# COHERE_API_KEY = "your-key"
+# OPENROUTER_API_KEY = "your-key"
 ```
 
-Select **Live: uploaded PDFs + selected LLM**, upload at least two PDFs, enter a unique supplier name, submission date and historical experience rating (0–10) for each, then evaluate. Live calls incur API usage. The selected provider and model are saved with the run for traceability; the key is not.
+Select **Live: uploaded PDFs + selected LLM**, upload at least two PDFs, enter a unique supplier name, submission date and historical experience rating (0–10) for each, then evaluate. Live calls incur API usage. The selected provider and model are saved with the run for traceability; the key is not. Request, authentication, model and response errors appear as toast notifications and in the page. OpenRouter custom models must support structured outputs.
 
 ## Project layout
 
@@ -34,7 +36,7 @@ Select **Live: uploaded PDFs + selected LLM**, upload at least two PDFs, enter a
 | `app.py` | Criteria editor, upload workflow, leaderboard, detailed scorecard and JSON download |
 | `seed_db.py` | SQLite schema, seeded active criteria and database access |
 | `workflow.py` | Orchestration, PDF extraction, evidence check and atomic run persistence |
-| `llm.py` | Shared evidence-grounded prompt and structured JSON calls for OpenAI, Anthropic and Gemini |
+| `llm.py` | Shared evidence-grounded prompt and structured JSON calls for all five providers |
 | `engine.py` | Result normalization, formulas, benchmarks and ranking |
 | `sample_data.py`, `generate_samples.py` | Reproducible fictional proposal content and PDF generator |
 | `sample_rfps/` | Ten selectable-text, three-page sample PDFs |

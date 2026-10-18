@@ -14,6 +14,7 @@ Implement and maintain this project only inside this `Code` directory. The sourc
 6. Keep demo fixtures visibly separate from live LLM evaluation. Do not present preset sample scores as AI-generated.
 7. Accept API keys from a password field, environment variables or Streamlit secrets. Never commit, log or persist keys or runtime databases.
 8. Sidebar API key input may override a configured provider key for the current user session. Pass provider and model through the workflow; persist those identifiers, never the key.
+9. Provider errors should appear as Streamlit toast notifications and remain visible in the page. OpenRouter model IDs contain a slash; allow these IDs while rejecting unsafe characters.
 
 ## Working sequence
 

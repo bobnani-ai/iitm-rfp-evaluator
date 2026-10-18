@@ -3,14 +3,16 @@ from __future__ import annotations
 import sys
 import tempfile
 import unittest
+import urllib.error
 from pathlib import Path
 from unittest.mock import patch
 import json
+from io import BytesIO
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from engine import normalize, rank_suppliers
-from llm import evaluate
+from llm import PROVIDER_KEY_ENV, PROVIDER_MODELS, _post, evaluate
 from sample_data import PROPOSALS
 from seed_db import active_criteria, initialize
 from workflow import create_run, demo_evaluation, extract_pdf, load_run
@@ -111,6 +113,10 @@ class EvaluationTests(unittest.TestCase):
                 {"type": "text", "text": result_json}]}, "api.anthropic.com"),
             ("Google Gemini", "gemini-3.8-flash", {"candidates": [{"finishReason": "STOP",
                 "content": {"parts": [{"text": result_json}]}}]}, "generativelanguage.googleapis.com"),
+            ("Cohere.ai", "command-a-plus-05-2026", {"finish_reason": "COMPLETE",
+                "message": {"content": [{"type": "text", "text": result_json}]}}, "api.cohere.com"),
+            ("OpenRouter", "openai/gpt-5.4-mini", {"choices": [{"finish_reason": "stop",
+                "message": {"content": result_json}}]}, "openrouter.ai"),
         ]
         for provider, model, payload, host in cases:
             with self.subTest(provider=provider):
@@ -125,10 +131,51 @@ class EvaluationTests(unittest.TestCase):
                 if provider == "Anthropic":
                     self.assertEqual(body["model"], model)
                     self.assertEqual(body["output_config"]["format"]["type"], "json_schema")
-                else:
+                elif provider == "Google Gemini":
                     self.assertIn(model, request.full_url)
                     self.assertEqual(body["generationConfig"]["responseFormat"]["text"]["mimeType"],
                                      "application/json")
+                elif provider == "Cohere.ai":
+                    self.assertEqual(body["model"], model)
+                    self.assertEqual(body["response_format"]["type"], "json_object")
+                    self.assertEqual(body["response_format"]["schema"]["type"], "object")
+                    self.assertEqual(request.get_header("Authorization"), "Bearer fake-key")
+                else:
+                    self.assertEqual(body["model"], model)
+                    self.assertTrue(body["provider"]["require_parameters"])
+                    self.assertTrue(body["response_format"]["json_schema"]["strict"])
+                    self.assertEqual(request.get_header("Authorization"), "Bearer fake-key")
+
+    def test_new_provider_errors_are_actionable(self):
+        self.assertEqual(PROVIDER_KEY_ENV["Cohere.ai"], "COHERE_API_KEY")
+        self.assertEqual(PROVIDER_KEY_ENV["OpenRouter"], "OPENROUTER_API_KEY")
+        self.assertIn("openai/gpt-5.4-mini", PROVIDER_MODELS["OpenRouter"])
+        cases = [
+            ("Cohere.ai", {"finish_reason": "MAX_TOKENS", "message": {"content": []}},
+             "Cohere response stopped: MAX_TOKENS"),
+            ("OpenRouter", {"choices": [{"finish_reason": "length", "message": {"content": "{}"}}]},
+             "OpenRouter response stopped: length"),
+            ("OpenRouter", {"error": {"message": "Invalid fake-key"}},
+             "OpenRouter returned an error: Invalid [redacted]"),
+            ("OpenRouter", {"choices": []}, "OpenRouter returned no completion choice"),
+            ("Cohere.ai", {"finish_reason": "COMPLETE", "message": {"content": []}},
+             "LLM response contained no JSON output"),
+        ]
+        for provider, payload, expected in cases:
+            with self.subTest(provider=provider, expected=expected):
+                with patch("llm._post", return_value=payload):
+                    with self.assertRaisesRegex(RuntimeError, expected.replace("[", r"\[").replace("]", r"\]")):
+                        evaluate("proposal", "X", self.criteria, "fake-key", provider=provider)
+
+    def test_provider_http_error_redacts_key(self):
+        error = urllib.error.HTTPError("https://api.cohere.com/v2/chat", 401, "Unauthorized", {},
+                                       BytesIO(b'{"message":"bad fake-key"}'))
+        with patch("llm.urllib.request.urlopen", side_effect=error):
+            with self.assertRaises(RuntimeError) as caught:
+                _post("https://api.cohere.com/v2/chat", {}, {}, "fake-key")
+        self.assertIn("HTTP 401", str(caught.exception))
+        self.assertIn("[redacted]", str(caught.exception))
+        self.assertNotIn("fake-key", str(caught.exception))
 
     def test_live_run_passes_selected_provider_without_persisting_key(self):
         inputs = []

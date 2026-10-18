@@ -12,11 +12,15 @@ PROVIDER_MODELS = {
     "OpenAI": ("gpt-5.4-mini", "gpt-5.4"),
     "Anthropic": ("claude-haiku-5-5", "claude-sonnet-5-5"),
     "Google Gemini": ("gemini-3.5-flash-lite", "gemini-3.8-flash"),
+    "Cohere.ai": ("command-a-plus-05-2026", "command-a-03-2025"),
+    "OpenRouter": ("openai/gpt-5.4-mini", "openai/gpt-5.4"),
 }
 PROVIDER_KEY_ENV = {
     "OpenAI": "OPENAI_API_KEY",
     "Anthropic": "ANTHROPIC_API_KEY",
     "Google Gemini": "GEMINI_API_KEY",
+    "Cohere.ai": "COHERE_API_KEY",
+    "OpenRouter": "OPENROUTER_API_KEY",
 }
 
 
@@ -94,7 +98,7 @@ def evaluate(text: str, supplier_name: str, criteria: list[dict], api_key: str,
     if not api_key.strip():
         raise ValueError(f"Provide an API key for {provider} to run live evaluation.")
     model = model or PROVIDER_MODELS[provider][0]
-    if not re.fullmatch(r"[A-Za-z0-9._-]+", model):
+    if not re.fullmatch(r"[A-Za-z0-9._:/-]+", model):
         raise ValueError("Model ID contains unsupported characters.")
     prompt = _prompt(text, supplier_name, criteria)
     system = "You are a cautious procurement evidence reviewer."
@@ -133,6 +137,49 @@ def evaluate(text: str, supplier_name: str, criteria: list[dict], api_key: str,
         for part in payload.get("content", []):
             if part.get("type") == "text":
                 return _parse_model_text(part["text"])
+
+    elif provider == "Cohere.ai":
+        payload = _post(
+            "https://api.cohere.com/v2/chat",
+            {"Authorization": f"Bearer {api_key}"},
+            {"model": model,
+             "messages": [{"role": "system", "content": system},
+                          {"role": "user", "content": prompt}],
+             "response_format": {"type": "json_object", "schema": schema}}, api_key,
+        )
+        if payload.get("finish_reason") != "COMPLETE":
+            raise RuntimeError(f"Cohere response stopped: {payload.get('finish_reason', 'unknown')}")
+        for part in payload.get("message", {}).get("content", []):
+            if part.get("type") == "text" and part.get("text"):
+                return _parse_model_text(part["text"])
+
+    elif provider == "OpenRouter":
+        payload = _post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            {"Authorization": f"Bearer {api_key}"},
+            {"model": model,
+             "messages": [{"role": "system", "content": system},
+                          {"role": "user", "content": prompt}],
+             "provider": {"require_parameters": True},
+             "response_format": {"type": "json_schema", "json_schema": {
+                 "name": "rfp_evaluation", "strict": True, "schema": schema}}}, api_key,
+        )
+        if payload.get("error"):
+            error = payload["error"]
+            detail = error.get("message", "unknown error") if isinstance(error, dict) else str(error)
+            raise RuntimeError(f"OpenRouter returned an error: {detail.replace(api_key, '[redacted]')}")
+        choices = payload.get("choices") or []
+        if not choices:
+            raise RuntimeError("OpenRouter returned no completion choice.")
+        choice = choices[0]
+        if choice.get("finish_reason") != "stop":
+            raise RuntimeError(f"OpenRouter response stopped: {choice.get('finish_reason', 'unknown')}")
+        message = choice.get("message") or {}
+        if message.get("refusal"):
+            raise RuntimeError("The LLM refused to evaluate this document.")
+        content = message.get("content")
+        if isinstance(content, str) and content:
+            return _parse_model_text(content)
 
     else:
         url_model = urllib.parse.quote(model, safe="")
