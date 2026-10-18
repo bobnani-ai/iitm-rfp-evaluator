@@ -8,7 +8,7 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Iterator
 
-DEFAULT_DB = Path(__file__).resolve().parent / "rfp_evaluation.db"
+DEFAULT_DB = Path(__file__).resolve().parents[1] / "data" / "rfp_evaluation.db"
 CRITERIA = [
     (1, "Technical Capability", "Architecture, integrations, scalability, technical fit", 30.0, 10.0, 1),
     (2, "Implementation Plan", "Timeline, milestones, staffing, risk plan", 20.0, 10.0, 1),

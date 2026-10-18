@@ -9,7 +9,7 @@ Implement and maintain this project only inside this `Code` directory. The sourc
 1. Load active criteria from SQLite at the start of every new batch. The active weights must total 100%.
 2. The LLM judges one PDF at a time and returns JSON with a criterion ID, score, maximum, justification and evidence for every active criterion. It never computes weights, peer metrics or rank.
 3. Validate model output before any arithmetic. Use the database criterion maximum, fill missing/invalid scores with zero, clip finite out-of-range scores and expose warnings. Positive scores require an evidence excerpt found in the extracted PDF.
-4. Use `engine.py` for deterministic formulas and sort by unrounded PPI descending, date ascending, experience descending, name ascending. Keep sequential ranks.
+4. Use `src/engine.py` for deterministic formulas and sort by unrounded PPI descending, date ascending, experience descending, name ascending. Keep sequential ranks.
 5. Save complete run JSON and each supplier result in one SQLite transaction using the same `rfp_run_id`. Existing run snapshots must remain stable when criteria change.
 6. Keep demo fixtures visibly separate from live LLM evaluation. Do not present preset sample scores as AI-generated.
 7. Accept API keys from a password field, environment variables or Streamlit secrets. Never commit, log or persist keys or runtime databases.
@@ -18,7 +18,7 @@ Implement and maintain this project only inside this `Code` directory. The sourc
 
 ## Working sequence
 
-Read `PROJECT_SPEC.md` and `README.md`, change the smallest relevant module, then run `python -m unittest discover -s tests -v`. For Streamlit UI changes, also exercise `AppTest` or run the app and click through a demo batch. Regenerate sample PDFs with `python generate_samples.py` if `sample_data.py` changes. Update `example_run.json` when formulas or output schema change. Keep the Community Cloud entrypoint as `Code/app.py` and dependency file as `Code/requirements.txt`.
+Read `PROJECT_SPEC.md` and `README.md`, change the smallest relevant module, then run `python -m unittest discover -s tests -v`. For Streamlit UI changes, also exercise `AppTest` or run the app and click through a demo batch. Regenerate sample PDFs with `python setup/generate_samples.py` if `src/sample_data.py` changes. Update `examples/example_run.json` when formulas or output schema change. Keep the Community Cloud entrypoint as `src/app.py` and dependency file as the repository-root `requirements.txt`. Keep runtime modules in `src/`, initialization and generation scripts in `setup/`, SQLite files in `data/`, and demonstration inputs and outputs in `examples/`.
 
 ## Known deployment constraint
 

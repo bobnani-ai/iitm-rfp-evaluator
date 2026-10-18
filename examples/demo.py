@@ -3,8 +3,12 @@
 from __future__ import annotations
 
 import json
+import sys
 import tempfile
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
 from engine import normalize
 from sample_data import PROPOSALS
@@ -22,7 +26,7 @@ def main() -> None:
             inputs.append({
                 "supplier_name": profile["name"], "submission_date": profile["date"],
                 "experience_rating": profile["experience"], "filename": filename,
-                "pdf_bytes": (Path(__file__).parent / "sample_rfps" / filename).read_bytes(),
+                "pdf_bytes": (ROOT / "examples" / "sample_rfps" / filename).read_bytes(),
             })
         run = create_run(inputs, "demo", path=database)
         print("SUCCESS CASE")

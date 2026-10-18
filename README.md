@@ -10,8 +10,8 @@ Use Python 3.12 or 3.13. From this `Code` directory:
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-python seed_db.py
-streamlit run app.py
+python setup/init_db.py
+streamlit run src/app.py
 ```
 
 On macOS/Linux, activate with `source .venv/bin/activate`. Open the Streamlit URL, choose **Demo: bundled proposals**, leave the default four selected, then click **Evaluate batch**. Open **Saved runs** to retrieve the result. Download JSON from the result panel.
@@ -33,15 +33,17 @@ Select **Live: uploaded PDFs + selected LLM**, upload at least two PDFs, enter a
 
 | Path | Purpose |
 | --- | --- |
-| `app.py` | Criteria editor, upload workflow, leaderboard, detailed scorecard and JSON download |
-| `seed_db.py` | SQLite schema, seeded active criteria and database access |
-| `workflow.py` | Orchestration, PDF extraction, evidence check and atomic run persistence |
-| `llm.py` | Shared evidence-grounded prompt and structured JSON calls for all five providers |
-| `engine.py` | Result normalization, formulas, benchmarks and ranking |
-| `sample_data.py`, `generate_samples.py` | Reproducible fictional proposal content and PDF generator |
-| `sample_rfps/` | Ten selectable-text, three-page sample PDFs |
-| `example_run.json` | Example completed four-supplier demo export |
-| `demo.py`, `DEMO_OUTPUT.md`, `tests/` | Terminal demonstration, observed output and focused verification |
+| `src/app.py` | Criteria editor, upload workflow, leaderboard, detailed scorecard and JSON download |
+| `src/seed_db.py` | SQLite schema, seeded active criteria and database access |
+| `src/workflow.py` | Orchestration, PDF extraction, evidence check and atomic run persistence |
+| `src/llm.py` | Shared evidence-grounded prompt and structured JSON calls for all five providers |
+| `src/engine.py` | Result normalization, formulas, benchmarks and ranking |
+| `src/sample_data.py` | Fictional proposal source data for classroom examples |
+| `setup/` | Database initialization and reproducible sample/example generators |
+| `data/` | Local SQLite database (`rfp_evaluation.db`, excluded from Git) |
+| `examples/sample_rfps/` | Ten selectable-text, three-page sample PDFs |
+| `examples/example_run.json` | Example completed four-supplier demo export |
+| `examples/demo.py`, `examples/DEMO_OUTPUT.md`, `tests/` | Terminal demonstration, observed output and focused verification |
 | `AGENTS.md`, `PROJECT_SPEC.md`, `DEPLOYMENT.md` | Coding-agent, acceptance and cloud deployment instructions |
 
 ## Workflow
@@ -76,16 +78,16 @@ Malformed JSON, missing criteria, nonnumeric scores and duplicate IDs produce vi
 
 ## Criteria and sample data
 
-Five example criteria are seeded at weights 30/20/20/20/10 and maxima of 10. Edit active status, description, weights and maxima in the **Criteria** tab; the active weights must still total 100. Existing runs keep their original criteria snapshot. The ten proposals all answer the same Northstar Borough Council request, with varied pricing, milestones, controls and gaps. `python generate_samples.py` recreates the PDFs from fictional source data.
+Five example criteria are seeded at weights 30/20/20/20/10 and maxima of 10. Edit active status, description, weights and maxima in the **Criteria** tab; the active weights must still total 100. Existing runs keep their original criteria snapshot. The ten proposals all answer the same Northstar Borough Council request, with varied pricing, milestones, controls and gaps. `python setup/generate_samples.py` recreates the PDFs from fictional source data; `python setup/generate_example.py` rebuilds the example run JSON.
 
 ## Demonstration and tests
 
 ```powershell
-python demo.py
+python examples/demo.py
 python -m unittest discover -s tests -v
 ```
 
-`demo.py` prints one successful four-supplier leaderboard and a malformed-score example (an oversized score and four missing criteria). The tests cover all ten PDF extractions, SQLite round-trip, score clipping, missing criteria, zero benchmarks and the tie-break chain. Live API output was not exercised without an API key.
+`examples/demo.py` prints one successful four-supplier leaderboard and a malformed-score example (an oversized score and four missing criteria). The tests cover all ten PDF extractions, SQLite round-trip, score clipping, missing criteria, zero benchmarks and the tie-break chain. Live API output was not exercised without an API key.
 
 For a submission demonstration, capture these application screenshots after running or deploying it: the Criteria tab, the four-supplier leaderboard, an expanded detailed scorecard with evidence and a validation warning or rejected unreadable PDF. The included JSON is a machine-readable artifact of the successful run.
 

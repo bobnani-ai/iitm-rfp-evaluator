@@ -1,6 +1,6 @@
 # Reproducible demonstration
 
-Run `python demo.py` from `Code` after installing `requirements.txt`. The script creates a temporary SQLite database and reads the four bundled sample PDFs.
+Run `python examples/demo.py` from `Code` after installing `requirements.txt`. The script creates a temporary SQLite database and reads the four bundled sample PDFs.
 
 ## Successful four-supplier run
 
@@ -11,7 +11,7 @@ Run `python demo.py` from `Code` after installing `requirements.txt`. The script
 | 3 | Orbit Digital | 66.00 | 70.78 |
 | 4 | BrightPath Tech | 62.00 | 66.67 |
 
-`example_run.json` contains the full run, including criterion evidence, peer benchmarks, gaps, warning lists and the tie-break rule.
+`examples/example_run.json` contains the full run, including criterion evidence, peer benchmarks, gaps, warning lists and the tie-break rule.
 
 ## Validation case
 

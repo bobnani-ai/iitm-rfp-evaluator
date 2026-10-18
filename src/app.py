@@ -14,7 +14,7 @@ from sample_data import PROPOSALS, REQUEST
 from seed_db import active_criteria, connect, initialize
 from workflow import create_run, load_run, recent_runs
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 st.set_page_config(page_title="RFP Supplier Ranking", page_icon="📋", layout="wide")
 initialize()
 
@@ -131,7 +131,7 @@ with evaluate_tab:
                 filename = profile["name"].lower().replace(" ", "_") + ".pdf"
                 inputs.append({"supplier_name": profile["name"], "submission_date": profile["date"],
                                "experience_rating": profile["experience"], "filename": filename,
-                               "pdf_bytes": (ROOT / "sample_rfps" / filename).read_bytes()})
+                               "pdf_bytes": (ROOT / "examples" / "sample_rfps" / filename).read_bytes()})
         st.caption("Fixture scores are preassigned for reproducibility. PDFs are still parsed and evidence is checked.")
     else:
         if not selected_api_key:

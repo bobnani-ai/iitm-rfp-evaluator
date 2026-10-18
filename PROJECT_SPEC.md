@@ -16,13 +16,13 @@ Rank suppliers responding to one RFP with traceable criterion scores, proposal e
 | Validation | Fill missing criteria, reject/normalize malformed scores, clip out-of-range values, flag unmatched evidence and show warnings. |
 | Scoring | Calculate absolute weighted score, best peer score, gap, relative percentage and PPI in Python. |
 | Ranking | Sort by PPI descending, date ascending, experience descending, name ascending; assign 1..N. |
-| Storage | `rfp_runs` and `supplier_results` hold the complete result under one run ID. |
+| Storage | `data/rfp_evaluation.db` contains `rfp_runs` and `supplier_results`, which hold the complete result under one run ID. |
 | Output | Leaderboard, scorecard evidence, warnings, tie-break explanation and full JSON export. |
 | Samples | Ten fictional PDF proposals for the same request, three pages each, with varied strengths and deliberate gaps. |
 
 ## Data contract
 
-The model result has `supplier_name`, `criteria[]`, `risks[]` and `overall_summary`. Each criterion has `criterion_id`, `score`, `max_score`, `justification` and `evidence`. The app adds database `name` and `weight`, peer `benchmark`, `gap` and `relative_percent`, plus supplier metadata, `absolute_score`, `ppi`, `final_rank` and warnings. See `example_run.json` for a full example.
+The model result has `supplier_name`, `criteria[]`, `risks[]` and `overall_summary`. Each criterion has `criterion_id`, `score`, `max_score`, `justification` and `evidence`. The app adds database `name` and `weight`, peer `benchmark`, `gap` and `relative_percent`, plus supplier metadata, `absolute_score`, `ppi`, `final_rank` and warnings. See `examples/example_run.json` for a full example.
 
 ## Edge cases to preserve
 
@@ -36,4 +36,4 @@ The model result has `supplier_name`, `criteria[]`, `risks[]` and `overall_summa
 
 ## Files to hand in
 
-`app.py`, supporting modules, `seed_db.py`, `requirements.txt`, ten PDFs under `sample_rfps/`, this specification, `AGENTS.md`, `README.md`, `DEPLOYMENT.md`, `example_run.json` and `DEMO_OUTPUT.md`. The final public URL and screenshots must be added after deployment to a GitHub repository and Streamlit Community Cloud account.
+`src/app.py`, supporting modules under `src/`, setup scripts under `setup/`, `requirements.txt`, ten PDFs under `examples/sample_rfps/`, this specification, `AGENTS.md`, `README.md`, `DEPLOYMENT.md`, `examples/example_run.json` and `examples/DEMO_OUTPUT.md`. The final public URL and screenshots must be added after deployment to a GitHub repository and Streamlit Community Cloud account.

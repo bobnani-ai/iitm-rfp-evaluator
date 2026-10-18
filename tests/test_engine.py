@@ -9,7 +9,8 @@ from unittest.mock import patch
 import json
 from io import BytesIO
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
 from engine import normalize, rank_suppliers
 from llm import PROVIDER_KEY_ENV, PROVIDER_MODELS, _post, evaluate
@@ -55,7 +56,7 @@ class EvaluationTests(unittest.TestCase):
         inputs = []
         for profile in PROPOSALS:
             filename = profile["name"].lower().replace(" ", "_") + ".pdf"
-            data = (Path(__file__).resolve().parents[1] / "sample_rfps" / filename).read_bytes()
+            data = (ROOT / "examples" / "sample_rfps" / filename).read_bytes()
             text = extract_pdf(data)
             self.assertIn(profile["name"], text)
             self.assertIn("Page 3 of 3", text)
@@ -183,7 +184,7 @@ class EvaluationTests(unittest.TestCase):
             filename = profile["name"].lower().replace(" ", "_") + ".pdf"
             inputs.append({"supplier_name": profile["name"], "submission_date": profile["date"],
                            "experience_rating": profile["experience"], "filename": filename,
-                           "pdf_bytes": (Path(__file__).resolve().parents[1] / "sample_rfps" / filename).read_bytes()})
+                           "pdf_bytes": (ROOT / "examples" / "sample_rfps" / filename).read_bytes()})
 
         def fixture(_text, name, criteria, _key, provider, model):
             self.assertEqual((provider, model), ("Anthropic", "claude-haiku-5-5"))

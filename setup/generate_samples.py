@@ -6,13 +6,16 @@ Only Python's standard library is used so sample creation works before pip insta
 from __future__ import annotations
 
 import re
+import sys
 import textwrap
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
 from sample_data import PROPOSALS, REQUEST
 
-ROOT = Path(__file__).resolve().parent
-OUT = ROOT / "sample_rfps"
+OUT = ROOT / "examples" / "sample_rfps"
 
 
 def escape(value: str) -> str:
@@ -97,7 +100,7 @@ def write_pdf(path: Path, proposal: dict) -> None:
 
 
 def main() -> None:
-    OUT.mkdir(exist_ok=True)
+    OUT.mkdir(parents=True, exist_ok=True)
     for proposal in PROPOSALS:
         name = re.sub(r"[^a-z0-9]+", "_", proposal["name"].lower()).strip("_")
         path = OUT / f"{name}.pdf"
