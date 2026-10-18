@@ -23,7 +23,7 @@ def main() -> None:
     with tempfile.TemporaryDirectory() as directory:
         run = create_run(inputs, "demo", path=Path(directory) / "example.db")
     output = root / "example_run.json"
-    output.write_text(json.dumps(run, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    output.write_bytes((json.dumps(run, indent=2, ensure_ascii=False) + "\n").encode("utf-8"))
     print(output)
 
 

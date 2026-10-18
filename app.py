@@ -9,6 +9,7 @@ from pathlib import Path
 
 import streamlit as st
 
+from llm import PROVIDER_KEY_ENV, PROVIDER_MODELS
 from sample_data import PROPOSALS, REQUEST
 from seed_db import active_criteria, connect, initialize
 from workflow import create_run, load_run, recent_runs
@@ -18,19 +19,23 @@ st.set_page_config(page_title="RFP Supplier Ranking", page_icon="📋", layout="
 initialize()
 
 
-def api_key() -> str:
-    key = os.environ.get("OPENAI_API_KEY", "")
+def api_key(provider: str, entered: str) -> str:
+    if entered.strip():
+        return entered.strip()
+    variable = PROVIDER_KEY_ENV[provider]
+    key = os.environ.get(variable, "")
     if key:
         return key
     try:
-        return str(st.secrets.get("OPENAI_API_KEY", ""))
+        return str(st.secrets.get(variable, ""))
     except (FileNotFoundError, KeyError):
         return ""
 
 
 def show_run(run: dict, key: str) -> None:
     st.subheader("Leaderboard")
-    st.caption(f"Run {run['rfp_run_id']} · {run['status']} · {run['mode']} mode")
+    st.caption(f"Run {run['rfp_run_id']} · {run['status']} · {run['mode']} mode · "
+               f"{run.get('provider', 'OpenAI')} / {run['model']}")
     st.dataframe([{
         "Rank": s["final_rank"], "Supplier": s["supplier_name"],
         "Absolute score / 100": round(s["absolute_score"], 2),
@@ -57,6 +62,22 @@ def show_run(run: dict, key: str) -> None:
                        file_name=f"rfp_run_{run['rfp_run_id']}.json", mime="application/json",
                        key=f"{key}_download")
 
+
+with st.sidebar:
+    st.header("LLM settings")
+    provider = st.selectbox("Provider", list(PROVIDER_MODELS))
+    model_choice = st.selectbox("Model", [*PROVIDER_MODELS[provider], "Custom model ID"],
+                                key=f"model_choice_{provider}")
+    model = (st.text_input("Custom model ID", key=f"custom_model_{provider}").strip()
+             if model_choice == "Custom model ID" else model_choice)
+    entered_key = st.text_input(f"{provider} API key", type="password",
+                                key=f"api_key_{provider}", placeholder="Paste API key")
+    selected_api_key = api_key(provider, entered_key)
+    if selected_api_key:
+        st.caption("API key available for live evaluation.")
+    else:
+        st.caption(f"Enter a key or configure {PROVIDER_KEY_ENV[provider]} as an environment variable or Streamlit secret.")
+    st.caption("The key is used for API calls and is not saved in SQLite or run JSON.")
 
 st.title("Agentic RFP Evaluation and Supplier Ranking")
 st.write(REQUEST)
@@ -94,7 +115,7 @@ with criteria_tab:
         st.error(str(exc))
 
 with evaluate_tab:
-    mode = st.radio("Evaluation mode", ["Demo: bundled proposals", "Live: uploaded PDFs + OpenAI"],
+    mode = st.radio("Evaluation mode", ["Demo: bundled proposals", "Live: uploaded PDFs + selected LLM"],
                     horizontal=True)
     inputs = []
     if mode.startswith("Demo"):
@@ -108,8 +129,8 @@ with evaluate_tab:
                                "pdf_bytes": (ROOT / "sample_rfps" / filename).read_bytes()})
         st.caption("Fixture scores are preassigned for reproducibility. PDFs are still parsed and evidence is checked.")
     else:
-        if not api_key():
-            st.warning("Set OPENAI_API_KEY in local environment or Streamlit secrets to use live evaluation.")
+        if not selected_api_key:
+            st.warning(f"Enter a {provider} API key in the sidebar or configure {PROVIDER_KEY_ENV[provider]}.")
         uploads = st.file_uploader("Upload supplier RFP PDFs", type="pdf", accept_multiple_files=True)
         for index, uploaded in enumerate(uploads or []):
             with st.expander(f"Supplier metadata: {uploaded.name}", expanded=True):
@@ -122,10 +143,13 @@ with evaluate_tab:
                 inputs.append({"supplier_name": name.strip(), "submission_date": submitted.isoformat(),
                                "experience_rating": experience, "filename": uploaded.name,
                                "pdf_bytes": uploaded.getvalue()})
-    if st.button("Evaluate batch", type="primary", disabled=len(inputs) < 2):
+    if st.button("Evaluate batch", type="primary",
+                 disabled=len(inputs) < 2 or (not mode.startswith("Demo") and (not selected_api_key or not model))):
         try:
             with st.spinner("Reading proposals and evaluating suppliers..."):
-                run = create_run(inputs, "demo" if mode.startswith("Demo") else "live", api_key())
+                run = create_run(inputs, "demo" if mode.startswith("Demo") else "live",
+                                 api_key=selected_api_key if not mode.startswith("Demo") else "",
+                                 provider=provider, model=model)
             st.session_state["current_run_id"] = run["rfp_run_id"]
             st.success("Run completed and saved to SQLite.")
         except Exception as exc:

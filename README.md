@@ -1,6 +1,6 @@
 # Agentic RFP Evaluation and Supplier Ranking
 
-This Streamlit classroom app compares supplier PDFs for one fictional council procurement. It reads active criteria from SQLite, obtains evidence-based criterion scores from an LLM in live mode, validates those scores, and calculates peer benchmarks and rank in deterministic Python. The bundled demo mode uses fixed classroom scores so anyone can try the interface without an API key; it is clearly labelled and does not claim to be an LLM evaluation.
+This Streamlit classroom app compares supplier PDFs for one fictional council procurement. It reads active criteria from SQLite, obtains evidence-based criterion scores from the selected LLM provider in live mode, validates those scores, and calculates peer benchmarks and rank in deterministic Python. The bundled demo mode uses fixed classroom scores so anyone can try the interface without an API key; it is clearly labelled and does not claim to be an LLM evaluation.
 
 ## Quick start
 
@@ -16,13 +16,16 @@ streamlit run app.py
 
 On macOS/Linux, activate with `source .venv/bin/activate`. Open the Streamlit URL, choose **Demo: bundled proposals**, leave the default four selected, then click **Evaluate batch**. Open **Saved runs** to retrieve the result. Download JSON from the result panel.
 
-For live evaluation, set `OPENAI_API_KEY` in your environment, or put it in an uncommitted `.streamlit/secrets.toml`:
+For live evaluation, choose a provider and model in the **left sidebar**, then paste that provider's API key into the password field. Supported providers are OpenAI, Anthropic Claude, and Google Gemini. The sidebar includes two model choices per provider and a custom model ID option. The pasted key is used for that session's API calls; it is never stored in SQLite or exported JSON. You may instead configure a provider-specific environment variable or an uncommitted `.streamlit/secrets.toml`:
 
 ```toml
 OPENAI_API_KEY = "your-key"
+# Optional alternatives:
+# ANTHROPIC_API_KEY = "your-key"
+# GEMINI_API_KEY = "your-key"
 ```
 
-Select **Live: uploaded PDFs + OpenAI**, upload at least two PDFs, enter a unique supplier name, submission date and historical experience rating (0–10) for each, then evaluate. The app uses `gpt-5.4-mini` by default; change `model` in `workflow.create_run` if your account uses another structured-output-capable model. Live calls incur API usage.
+Select **Live: uploaded PDFs + selected LLM**, upload at least two PDFs, enter a unique supplier name, submission date and historical experience rating (0–10) for each, then evaluate. Live calls incur API usage. The selected provider and model are saved with the run for traceability; the key is not.
 
 ## Project layout
 
@@ -31,7 +34,7 @@ Select **Live: uploaded PDFs + OpenAI**, upload at least two PDFs, enter a uniqu
 | `app.py` | Criteria editor, upload workflow, leaderboard, detailed scorecard and JSON download |
 | `seed_db.py` | SQLite schema, seeded active criteria and database access |
 | `workflow.py` | Orchestration, PDF extraction, evidence check and atomic run persistence |
-| `llm.py` | Evidence-grounded prompt and strict JSON-schema Responses API call |
+| `llm.py` | Shared evidence-grounded prompt and structured JSON calls for OpenAI, Anthropic and Gemini |
 | `engine.py` | Result normalization, formulas, benchmarks and ranking |
 | `sample_data.py`, `generate_samples.py` | Reproducible fictional proposal content and PDF generator |
 | `sample_rfps/` | Ten selectable-text, three-page sample PDFs |
@@ -54,7 +57,7 @@ flowchart LR
   SAVE --> VIEW[Leaderboard, scorecard and JSON]
 ```
 
-The PDF and criteria are data supplied to the evaluator. The LLM is asked for one criterion result per active criterion with a direct evidence quote. The app checks that each positive-score quote appears in extracted PDF text; unsupported scores become zero with warnings. API failure stops the batch before it is saved. A scanned PDF with no selectable text needs OCR and is rejected.
+The PDF and criteria are data supplied to the evaluator. The selected LLM is asked for one criterion result per active criterion with a direct evidence quote. The app checks that each positive-score quote appears in extracted PDF text; unsupported scores become zero with warnings. API failure stops the batch before it is saved. A scanned PDF with no selectable text needs OCR and is rejected.
 
 ## Scoring rules
 

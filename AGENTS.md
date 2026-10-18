@@ -12,7 +12,8 @@ Implement and maintain this project only inside this `Code` directory. The sourc
 4. Use `engine.py` for deterministic formulas and sort by unrounded PPI descending, date ascending, experience descending, name ascending. Keep sequential ranks.
 5. Save complete run JSON and each supplier result in one SQLite transaction using the same `rfp_run_id`. Existing run snapshots must remain stable when criteria change.
 6. Keep demo fixtures visibly separate from live LLM evaluation. Do not present preset sample scores as AI-generated.
-7. Keep API keys in environment variables or Streamlit secrets. Never commit secrets or runtime databases.
+7. Accept API keys from a password field, environment variables or Streamlit secrets. Never commit, log or persist keys or runtime databases.
+8. Sidebar API key input may override a configured provider key for the current user session. Pass provider and model through the workflow; persist those identifiers, never the key.
 
 ## Working sequence
 

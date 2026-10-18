@@ -12,6 +12,7 @@ Rank suppliers responding to one RFP with traceable criterion scores, proposal e
 | Input | At least two PDF proposals, a unique supplier name, ISO submission date and experience rating from 0 to 10. |
 | Extraction | Read selectable text from every PDF; reject unreadable, encrypted, oversized or scanned files with a clear error. |
 | Evaluation | One structured JSON scorecard per supplier based only on its PDF and the current active criteria. |
+| Provider selection | Sidebar selects OpenAI, Anthropic or Google Gemini, a model, and a provider API key. The selected provider and model appear in the run JSON; the key never does. |
 | Validation | Fill missing criteria, reject/normalize malformed scores, clip out-of-range values, flag unmatched evidence and show warnings. |
 | Scoring | Calculate absolute weighted score, best peer score, gap, relative percentage and PPI in Python. |
 | Ranking | Sort by PPI descending, date ascending, experience descending, name ascending; assign 1..N. |

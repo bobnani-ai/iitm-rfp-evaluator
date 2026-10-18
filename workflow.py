@@ -10,7 +10,7 @@ from io import BytesIO
 from pathlib import Path
 
 from engine import normalize, rank_suppliers
-from llm import evaluate
+from llm import PROVIDER_MODELS, evaluate
 from sample_data import PROPOSALS
 from seed_db import active_criteria, connect, initialize
 
@@ -74,7 +74,8 @@ def demo_evaluation(name: str, criteria: list[dict]) -> dict:
             "overall_summary": profile["summary"]}
 
 
-def create_run(inputs: list[dict], mode: str, api_key: str = "", model: str = "gpt-5.4-mini",
+def create_run(inputs: list[dict], mode: str, api_key: str = "", provider: str = "OpenAI",
+               model: str | None = None,
                path: Path | None = None) -> dict:
     if len(inputs) < 2:
         raise ValueError("Upload or select at least two supplier proposals.")
@@ -90,11 +91,15 @@ def create_run(inputs: list[dict], mode: str, api_key: str = "", model: str = "g
             raise ValueError("Each PDF must be 10 MB or smaller.")
     initialize(path)
     criteria = active_criteria(path)
+    if mode == "live" and provider not in PROVIDER_MODELS:
+        raise ValueError("Unsupported LLM provider.")
+    selected_model = model or PROVIDER_MODELS.get(provider, PROVIDER_MODELS["OpenAI"])[0]
     results = []
     for item in inputs:
         text = extract_pdf(item["pdf_bytes"])
         raw = (demo_evaluation(item["supplier_name"], criteria) if mode == "demo"
-               else evaluate(text, item["supplier_name"], criteria, api_key, model))
+               else evaluate(text, item["supplier_name"], criteria, api_key,
+                             provider=provider, model=selected_model))
         scorecard = normalize(raw, item["supplier_name"], criteria)
         _ground_scorecard(scorecard, text)
         results.append({
@@ -110,7 +115,8 @@ def create_run(inputs: list[dict], mode: str, api_key: str = "", model: str = "g
         "created_at": datetime.now(timezone.utc).isoformat(),
         "status": "completed_with_warnings" if any(r["scorecard"]["warnings"] for r in ranked) else "completed",
         "mode": mode,
-        "model": model if mode == "live" else "classroom fixture",
+        "provider": provider if mode == "live" else "classroom fixture",
+        "model": selected_model if mode == "live" else "classroom fixture",
         "criteria": criteria,
         "suppliers": ranked,
         "formula_notes": {
